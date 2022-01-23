@@ -1,7 +1,7 @@
 name: telnyx_flutter
-description: A starting point for Dart libraries or applications.
-# version: 1.0.0
-# homepage: https://www.example.com
+description:  A Dart package for Telnyx API.
+version: 0.0.3
+homepage: https://github.com/kfiross/telnyx_flutter
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
