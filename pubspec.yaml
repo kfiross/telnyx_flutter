@@ -1,6 +1,6 @@
 name: telnyx_flutter
-description: A Dart package for Telnyx API.
-version: 0.0.3
+description: Dart Package that helps using the Telnyx API services, Supports Telnyx Programmable SMS
+version: 0.0.5
 homepage: https://github.com/kfiross/telnyx_flutter
 
 environment:

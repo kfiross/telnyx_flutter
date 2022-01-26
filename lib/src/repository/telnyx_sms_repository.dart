@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:telnyx_flutter/src/models/telnyx_creds.dart';
+import '../utils/utils.dart';
 
 abstract class TelnyxSmsRepository {
   Future<int> sendSMS({
@@ -27,22 +28,23 @@ class TelnyxSmsRepositoryImpl extends TelnyxSmsRepository {
     required String messageBody,
     required TelnyxCreds? telnyxCreds,
   }) async {
-    var token = telnyxCreds!.apiKey;
-    // var bytes = utf8.encode(cred);
-    // var base64Str = base64.encode(bytes);
+    var apiKey = telnyxCreds!.apiKey;
 
     var headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Bearer $token',
+      'Authorization': 'Bearer $apiKey',
     };
     var body = {
       'from': telnyxCreds.telnyxNumber,
       'to': toNumber,
-      'text': messageBody
+      'text': messageBody,
     };
-    var response = await http.post(Uri.parse(telnyxCreds.url),
-        headers: headers, body: jsonEncode(body));
+    var response = await http.post(
+      Uri.parse('${telnyxCreds.url}/${Utils.sms_endpoint}'),
+      headers: headers,
+      body: jsonEncode(body),
+    );
     if (response.statusCode < 400) {
       print('Sms sent Success');
       return response.statusCode;
@@ -58,15 +60,13 @@ class TelnyxSmsRepositoryImpl extends TelnyxSmsRepository {
   }
 
   @override
-  Future<int> sendSMSWithSenderID(
-      {required String senderId,
-        required String toNumber,
-      required String messageBody,
-      required TelnyxCreds? telnyxCreds,
-      }) async {
+  Future<int> sendSMSWithSenderID({
+    required String senderId,
+    required String toNumber,
+    required String messageBody,
+    required TelnyxCreds? telnyxCreds,
+  }) async {
     var apiKey = telnyxCreds!.apiKey;
-    // var bytes = utf8.encode(cred);
-    // var base64Str = base64.encode(bytes);
 
     var headers = {
       'Content-Type': 'application/json',
@@ -78,8 +78,11 @@ class TelnyxSmsRepositoryImpl extends TelnyxSmsRepository {
       'text': messageBody,
       'messaging_profile_id': telnyxCreds.messagingProfileId
     };
-    var response = await http.post(Uri.parse(telnyxCreds.url),
-        headers: headers, body: jsonEncode(body));
+    var response = await http.post(
+      Uri.parse(telnyxCreds.url),
+      headers: headers,
+      body: jsonEncode(body),
+    );
     if (response.statusCode < 400) {
       print('Sms sent Success');
       return response.statusCode;

@@ -1,16 +1,16 @@
 # Telnyx Flutter 
 
-A Flutter package for both android and iOS which helps developers with Telnyx API services.
+A Flutter (dart) package for helping developers using the Telnyx API services
 
 ## Features
 
-* Send SMS programmatically;
+* Send SMS programmatically
+* Send WhatsApp messages programmatically
 
 #### upcoming:
 
-* Get all SMS related to a Telnyx account;
-* Get more info on each SMS sent from a Telnyx account;
-* Send WhatsApp messages programmatically;
+* Get all SMS related to a Telnyx account
+* Get more info on each SMS sent from a Telnyx account
 
 ## Getting Started
 
@@ -22,7 +22,7 @@ To use this package :
 dependencies:
   flutter:
     sdk: flutter
-  telnyx_flutter: ^0.0.3
+  telnyx_flutter: ^0.0.5
 ```
 
 ## How to use
@@ -31,27 +31,41 @@ dependencies:
 #### Create a new client object
 ```dart
 var telnyxFlutter = TelnyxFlutter(
-    telnyxNumber : '[YOUR_TELNYX_NUMBER]',  // e.g: +............... 
-    authToken : '[YOUR_TELNYX_API_KEY]',    // e.g: KEY****  
-    messagingProfileId : '[YOUR_MESSAGING_PROFILE_ID]' // e.g: aaaaaaaa-bbbb-cccc-dddd-111111111111   
-    );
+  telnyxNumber : '[YOUR_TELNYX_NUMBER]',  // e.g: +............... 
+  authToken : '[YOUR_TELNYX_API_KEY]',    // e.g: KEY****  
+  messagingProfileId : '[YOUR_MESSAGING_PROFILE_ID]', // e.g: aaaaaaaa-bbbb-cccc-dddd-111111111111
+  whatappUserId: ['WHATSUP_USER_ID']    // (optional)   
+);
 ```
 #### Send SMS
 ```dart
-twilioFlutter.sendSMS(
-   toNumber : '+................', 
-   messageBody : 'your message here'); 
+telnyxFlutter.sendSMS(
+  toNumber : '+................', 
+  messageBody : 'your message here',
+); 
 ```
 
 #### Send SMS (Using Alphanumeric SenderID)
 
 ```dart
 // for example using TELNYX
-twilioFlutter.sendSMS(
-   senderId: 'TELNYX'
-   toNumber : '+................', 
-   messageBody : 'your message here'); 
+telnyxFlutter.sendSMS(
+  senderId: 'TELNYX'
+  toNumber : '+................', 
+  messageBody : 'your message here',
+); 
 ```
+
+#### Send Whatsapp SMS (Using Alphanumeric SenderID)
+
+```dart
+// for example using TELNYX
+telnyxFlutter.sendWhatsApp(
+  toNumber : '+................', 
+  messageBody : 'your WA message here',
+);
+```
+
 
 ## Author
 

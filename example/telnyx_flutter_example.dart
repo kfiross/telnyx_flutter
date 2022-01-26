@@ -22,5 +22,11 @@ void main() {
   });
 
 
+  telnyxFlutter.sendWhatsApp(
+      toNumber: toNumber, messageBody: messageBody).then((value) {
+    print(value);
+  });
+
+
 
 }
