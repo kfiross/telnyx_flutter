@@ -56,10 +56,9 @@ telnyxFlutter.sendSMS(
 ); 
 ```
 
-#### Send Whatsapp SMS (Using Alphanumeric SenderID)
+#### Send Whatsapp SMS (to individual number)
 
 ```dart
-// for example using TELNYX
 telnyxFlutter.sendWhatsApp(
   toNumber : '+................', 
   messageBody : 'your WA message here',
